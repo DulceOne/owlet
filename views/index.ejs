@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Owlet indie team</title>
+    <%-include('link')%>
+</head>
+<body>
+    <%- include('header') %>   
+    <section class="parallax-window" data-parallax="scroll" data-natural-width = "1600" data-natural-height = "900" data-image-src="../image/main_paralax_bg.jpg">
+    </section>
+    <main>
+        <section class="container">
+            <div class="header">Owlet team games:</div>
+            <div class="games">
+            <% for(i = result.games.length-1;i>=0;i--){%>
+                <a href="<%-result.games[i].link%>"><div class="item">
+                    <img src="../image/<%-result.games[i].img%> "alt="">
+                    <div class="description">
+                        <p><%-result.games[i].descr%></p>
+                    </div>
+                </div></a>
+            <%}%>
+                <%if(role=="admin"){%>
+                    <div class="item plusGame">+</div>
+                <%}%>
+            </div>
+        </section>
+        <section class="info">
+            <div class="wraper">
+                <div class="news">
+                    <% for(i = result.news.length-1;i>=result.news.length-3;i--){%>
+                        <a href="/news/<%=result.news[i]._id%>" class="item">
+                                <div class="img"></div>
+                            <div class="content">
+                                <div class="header"><%=result.news[i].title%></div>
+                                <div class="date"><%=result.news[i].date%></div>
+                            </div>
+                        </a>
+                    <%}%>
+                   <div class="wraper">
+                        <a href="/news" class="btn newsbtn">All news</a>
+                        <%if(role=="admin"){%>
+                            <div class="plusNew">+</div>
+                        <%}%>
+                       
+                    </div>
+                </div>
+                <div class="right">
+                    <b>First game of Owlet team</b>
+                    <iframe width="400" height="225" src="https://www.youtube.com/embed/Nv4wBIFNWLU?showinfo=0"  frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+    <%-include('footer')%>
+   <%-include('panel')%>
+</body>
+</html>

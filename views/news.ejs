@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>news</title>
+<%-include('link')%>
+</head>
+<body>
+    <%- include('header') %>
+    <section class="news">
+    <% for(i = result.length-1;i>=0;i--){%>
+        <div class="item">
+            <div class="header">
+                <div class="content"><%-result[i].title%></div>
+                <div class="time"><%-result[i].date%></div>
+                <%if(role=="admin"){%>
+                    <div class="btn edit" data-id="<%-result[i]._id%>">Edit</div>
+                    <div class="btn del" data-id="<%-result[i]._id%>">Delete</div>
+                <%}%>
+            </div>
+                <div class="wraper">
+                    <div class="content">
+                    <%-result[i].lowContent%>
+                    </div>
+                    <img src="../image/<%-result[i].img%> "alt="">
+                </div>
+            <a href="/news/<%=result[i]._id%>" class="btn more">Read More</a>
+        </div>
+    <%}%>
+    </section>
+    <%- include('footer')%>
+    <%-include('panel')%>
+</body>
+</html>
