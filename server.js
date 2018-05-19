@@ -76,12 +76,12 @@ app.get('/login',function(req,res){
 })
 
 
-// db.connect('mongodb://localhost:27017/dulce',function(err){
-// 	if(err){
-// 		return console.log(err);
-// 	}
+db.connect('mongodb://localhost:27017/dulce',function(err){
+	if(err){
+		return console.log(err);
+	}
 	app.listen(9000,function(){
 		console.log("server started");
 	})
-// });
+});
 

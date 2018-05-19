@@ -378,7 +378,8 @@ footer {
         box-sizing: border-box; }
       .news .item .wraper img {
         width: 350px;
-        height: 200px; }
+        height: 200px;
+        object-fit: cover; }
     .news .item .more {
       display: inline-block;
       text-decoration: none;
