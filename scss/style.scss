@@ -461,6 +461,25 @@ footer{
             width:200px;
         }
     }
+    .current{
+        width: inherit;
+        margin: inherit;
+        margin-top:20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        .page{
+            margin-left:5px;
+            padding: 5px;
+            transition: 0.5s all;
+            background:black;
+            color:white;
+            cursor: pointer;
+            &:hover{
+                background: #35c0c7;
+            }
+        }
+    }
 }
 .tidings{
     width: 800px;

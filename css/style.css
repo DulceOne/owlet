@@ -383,6 +383,22 @@ footer {
       display: inline-block;
       text-decoration: none;
       width: 200px; }
+  .news .current {
+    width: inherit;
+    margin: inherit;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row; }
+    .news .current .page {
+      margin-left: 5px;
+      padding: 5px;
+      transition: 0.5s all;
+      background: black;
+      color: white;
+      cursor: pointer; }
+      .news .current .page:hover {
+        background: #35c0c7; }
 
 .tidings {
   width: 800px;
