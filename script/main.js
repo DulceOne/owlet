@@ -145,28 +145,37 @@ $(document).ready(function(){
         }
     })
 
+    $('.page').click(function(){
+        var page = $(this).attr('data-id');
+        console.log(page);
+    })
+
     if(location.pathname == "/login"){
-        $('#log').click(function(){
-            if($(login) && $(password)){
-                var username = $('#login').val();
-                var password = $('#password').val();
-                $.ajax({
-                    url:'/login',
-                    type:'POST',
-                    data:{
-                        username:username,
-                        password:password
-                    }
-                }).done(function(res){
-                    if(res)
-                       document.location='/';
-                }).fail(function(err){
-                    console.log(err);
-                });    
-            }
-        })
+        $('#log').click(sendLogin);
+        if(keypress == 13){
+            sendLogin();
+        }
     }
 
+    function sendLogin(){
+        if($(login) && $(password)){
+            var username = $('#login').val();
+            var password = $('#password').val();
+            $.ajax({
+                url:'/login',
+                type:'POST',
+                data:{
+                    username:username,
+                    password:password
+                }
+            }).done(function(res){
+                if(res)
+                   document.location='/';
+            }).fail(function(err){
+                console.log(err);
+            });    
+        }
+    }
     $('.logOut').click(function(){
         $.ajax({
             url:'/logout',

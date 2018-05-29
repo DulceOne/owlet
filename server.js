@@ -42,12 +42,15 @@ function checkAuthentication(req,res,next){
         res.redirect("/login");
     }
 }
-
+/////////////////GET/////////////////////
 app.get('/',data.getData);
 
 app.get('/news',data.getCutNews);
 
 app.get('/news/:id',data.getOneNews);
+
+app.get('/news/page/:id',data.getCutNews);
+/////////////////POST/////////////////////
 
 app.post('/getOneNews',data.getOneNews);
 

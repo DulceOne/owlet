@@ -13,14 +13,28 @@ exports.getData = function(req,res){
 }
 
 exports.getCutNews = function(req,res){
-    data.getCutNews(function(err,result){
-        if(req.isAuthenticated()){
-            if(result){
-                return res.render('news.ejs',{role:"admin",result:result});
+    if(!req.params.id){
+        data.getCutNews("",function(err,result,count){
+            console.log("don't params")
+            if(req.isAuthenticated()){
+                if(result){
+                    return res.render('news.ejs',{role:"admin",result:result,count:count});
+                }
             }
-        }
-        return res.render('news.ejs',{role:"user",result:result});
-    });
+            return res.render('news.ejs',{role:"user",result:result,count:count});
+        });
+    }
+    else{
+        console.log(req.params.id)
+        data.getCutNews(req.params.id,function(err,result,count){
+            if(req.isAuthenticated()){
+                if(result){
+                    return res.render('news.ejs',{role:"admin",result:result,count:count});
+                }
+            }
+            return res.render('news.ejs',{role:"user",result:result,count:count});
+        });
+    }
 }
 
 exports.getOneNews = function(req,res){
