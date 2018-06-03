@@ -156,6 +156,19 @@ $(document).ready(function(){
             sendLogin();
         }
     }
+    $(".btn.del").click(function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url:'/newsDell',
+            type:'POST',
+            data:{id:id}
+        }).done(function(res){
+            if(res)
+                document.location='/news';
+        }).fail(function(err){
+            alert("Server error");
+        })
+    })
 
     function sendLogin(){
         if($(login) && $(password)){
@@ -176,6 +189,7 @@ $(document).ready(function(){
             });    
         }
     }
+
     $('.logOut').click(function(){
         $.ajax({
             url:'/logout',
@@ -187,4 +201,12 @@ $(document).ready(function(){
             alert('Server erorr');
         })
     })
+
+    $('.send').click(function(){
+        var pl = document.querySelectorAll(".pl");
+        player(pl);
+    });
+    function player(){
+        for()
+    }
 });

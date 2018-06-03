@@ -13,8 +13,10 @@
         <div class="header">
             <div class="title"><%-result.title%></div>
             <div class="date"><%-result.date%></div>
-            <div class="btn edit" data-id="<%-result._id%>">Edit</div>
-            <div class="btn del" data-id="<%-result._id%>">Delete</div>
+            <%if(role=="admin"){%>
+                <div class="btn edit" data-id="<%-result._id%>">Edit</div>
+                <div class="btn del" data-id="<%-result._id%>">Delete</div>
+            <%}%>
         </div>
         <div class="content">
             <%-result.news%>

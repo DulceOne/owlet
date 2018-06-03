@@ -52,6 +52,15 @@ exports.newsUpdate = function(req,res){
     })
 }
 
+exports.newsDell = function(req,res){
+    var id = req.body.id;
+    admin.newsDell(id,function(err,result){
+        if(err)
+            return res.sendStatus(500)
+        res.sendStatus(200);
+    });
+}
+
 exports.login = function(req,res){
 
     var user = {

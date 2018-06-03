@@ -31,6 +31,12 @@ exports.newsUpdate = function(news,cb){
     })
 }
 
+exports.newsDell = function(id,cb){
+    db.get().collection('news').remove({_id:ObjectID(id)},function(err,res){
+        cb(err,res);
+    });
+}
+
 exports.login = function(user,cb){
     var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;

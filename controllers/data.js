@@ -40,7 +40,6 @@ exports.getCutNews = function(req,res){
 exports.getOneNews = function(req,res){
     var id = (req.params.id ? req.params.id : req.body.id);
     data.getOneNews(id,function(err,result){
-        console.log(result);
         if(req.params.id){
             if(req.isAuthenticated()){
                 if(result){
@@ -58,4 +57,10 @@ exports.getOneNews = function(req,res){
             return res.render('news.ejs',{role:"user",result:result});
         }
     })
+}
+
+
+exports.uploadFiles= function(req,res){
+    console.log(req.files.foo);
+    // var files = req.
 }

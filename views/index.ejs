@@ -31,14 +31,16 @@
         <section class="info">
             <div class="wraper">
                 <div class="news">
-                    <% for(i = result.news.length-1;i>=result.news.length-3;i--){%>
-                        <a href="/news/<%=result.news[i]._id%>" class="item">
-                                <div class="img"></div>
-                            <div class="content">
-                                <div class="header"><%=result.news[i].title%></div>
-                                <div class="date"><%=result.news[i].date%></div>
-                            </div>
-                        </a>
+                    <%for(i=0;i<result.news.length;i++){%>
+                        <%if(i<3){%>
+                            <a href="/news/<%=result.news[i]._id%>" class="item">
+                                    <div class="img"></div>
+                                <div class="content">
+                                    <div class="header"><%=result.news[i].title%></div>
+                                    <div class="date"><%=result.news[i].date%></div>
+                                </div>
+                            </a>
+                        <%}%>
                     <%}%>
                    <div class="wraper">
                         <a href="/news" class="btn newsbtn">All news</a>

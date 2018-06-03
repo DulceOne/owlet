@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var MongoClient = require('mongodb').MongoClient;
 var cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 var fs = require('fs');
 var path = require('path');
 var db = require('./db');
@@ -31,6 +32,7 @@ app.use(passport.session());
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.use(fileUpload());
 
 var data = require('./controllers/data');
 var admin = require('./controllers/admin');
@@ -50,6 +52,13 @@ app.get('/news',data.getCutNews);
 app.get('/news/:id',data.getOneNews);
 
 app.get('/news/page/:id',data.getCutNews);
+
+app.get('/about',function(req,res){
+	res.render('about.ejs',{role:""});
+});
+app.get('/uploadFiles',function(req,res){
+	res.render('filesUpload.ejs',{});
+});
 /////////////////POST/////////////////////
 
 app.post('/getOneNews',data.getOneNews);
@@ -59,6 +68,12 @@ app.post('/gameAdd',admin.gameAdd);
 app.post('/newsAdd',admin.newsAdd);
 
 app.post('/newsUpdate',admin.newsUpdate);
+
+app.post('/newsDell',admin.newsDell);
+
+app.post('/uploadFiles',data.uploadFiles);
+
+
 
 app.post('/login',passport.authenticate('local', { failureRedirect: '/login' }),function(req,res){
 	res.redirect('/');
