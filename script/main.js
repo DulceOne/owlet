@@ -201,12 +201,4 @@ $(document).ready(function(){
             alert('Server erorr');
         })
     })
-
-    $('.send').click(function(){
-        var pl = document.querySelectorAll(".pl");
-        player(pl);
-    });
-    function player(){
-        for()
-    }
 });
