@@ -19,10 +19,12 @@ exports.gameAdd = function(req,res){
 }
 
 exports.newsAdd = function(req,res){
-
+    console.log(req.body.newsTitle);
     var news = {
-        content:req.body.newsContent,
+        news:req.body.newsContent,
         lowContent:req.body.newsLowContent,
+        title:req.body.newsTitle,
+        date:req.body.date,
         img:req.body.newsImgName
     }
 
@@ -52,6 +54,22 @@ exports.newsUpdate = function(req,res){
     })
 }
 
+exports.gameUpdate = function(req,res){
+    var game = {
+       id: req.body.id,
+       descr:req.body.descr,
+       img:req.body.gamesImgName
+    }
+    
+    fileSave(req.body.data,game.img);
+
+    admin.gameUpdate(game,function(err,result){
+        if(err)
+            return res.sendStatus(500);
+        res.sendStatus(200);
+    })
+}
+
 exports.newsDell = function(req,res){
     var id = req.body.id;
     admin.newsDell(id,function(err,result){
@@ -75,6 +93,14 @@ exports.login = function(req,res){
     });
 }
 
+
+exports.gameDell = function(req,res){
+    admin.gameDell(req.body.id,function(err,result){
+        if(err)
+            return res.sendStatus(500);
+        res.sendStatus(200);
+    })
+}
 
 function fileSave(file,name){
     var b64Data = file.split(',')[1];

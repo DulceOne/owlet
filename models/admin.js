@@ -12,8 +12,10 @@ exports.gameAdd = function(game,cb){
 
 exports.newsAdd = function(news,cb){
     db.get().collection('news').insert({
-        content:news.content,
+        news:news.news,
         lowContent:news.lowContent,
+        title:news.title,
+        date:news.date,
         img:news.img
     },function(err,result){
         cb(err,result);
@@ -31,10 +33,25 @@ exports.newsUpdate = function(news,cb){
     })
 }
 
+exports.gameUpdate = function(game,cb){
+    db.get().collection('projects').update({_id:ObjectID(game.id)},{$set:{
+        descr:game.descr,
+        img:game.img
+    }},function(err,doc){
+        cb(err,doc);
+    })
+}
+
 exports.newsDell = function(id,cb){
     db.get().collection('news').remove({_id:ObjectID(id)},function(err,res){
         cb(err,res);
     });
+}
+
+exports.gameDell = function(id,cb){
+    db.get().collection('projects').remove({_id:ObjectID(id)},function(err,res){
+        cb(err,res);
+    })
 }
 
 exports.login = function(user,cb){

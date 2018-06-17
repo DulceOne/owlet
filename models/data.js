@@ -1,7 +1,7 @@
 var db = require('../db');
 var ObjectID = require('mongodb').ObjectID;
 exports.getData = function(cb){
-    db.get().collection('news').find().toArray(function(err,data){
+    db.get().collection('news').find().sort({ $natural: -1 }).toArray(function(err,data){
         db.get().collection('projects').find().toArray(function(err2,data2){
             var dataObj ={
                 news:data,
@@ -47,3 +47,10 @@ exports.getOneNews = function(id,cb){
         cb(err,doc)
     })
 }
+
+exports.getOneGame = function(id,cb){
+    db.get().collection('projects').findOne({_id:ObjectID(id)},function(err,doc){
+        cb(err,doc)
+    })
+}
+

@@ -10,6 +10,8 @@ var passport = require('./autuh');
 var bodyParser = require('body-parser');
 var ObjectID = require('mongodb').ObjectID;
 var session = require('express-session');
+var cors = require('cors');
+app.use(cors());
 
 app.use(express.static(__dirname));
 app.use (bodyParser.urlencoded ({
@@ -63,15 +65,30 @@ app.get('/uploadFiles',function(req,res){
 
 app.post('/getOneNews',data.getOneNews);
 
+app.post('/getOneGame',data.getOneGame);
+
+
 app.post('/gameAdd',admin.gameAdd);
+
+
+app.get('/saveWeather',function(req,res){
+	console.log(req.query.city)
+	console.log(req.query.date)
+});
 
 app.post('/newsAdd',admin.newsAdd);
 
 app.post('/newsUpdate',admin.newsUpdate);
 
+app.post('/gameUpdate',admin.gameUpdate);
+
 app.post('/newsDell',admin.newsDell);
 
+app.post('/gameDell',admin.gameDell);
+
 app.post('/uploadFiles',data.uploadFiles);
+
+
 
 
 

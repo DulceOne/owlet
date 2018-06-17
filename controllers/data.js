@@ -59,6 +59,16 @@ exports.getOneNews = function(req,res){
     })
 }
 
+exports.getOneGame = function(req,res){
+    var id = req.body.id;
+    data.getOneGame(id,function(err,result){
+       if(!err)
+          return res.send(result);
+       res.send(err);
+    })
+}
+
+
 
 exports.uploadFiles= function(req,res){
     console.log(req.files.foo);

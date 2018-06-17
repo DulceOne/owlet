@@ -8,6 +8,7 @@
     <%-include('link')%>
 </head>
 <body>
+    <div id="hui">ETO HUI</div>
     <%- include('header') %>   
     <section class="parallax-window" data-parallax="scroll" data-natural-width = "1600" data-natural-height = "900" data-image-src="../image/main_paralax_bg.jpg">
     </section>
@@ -16,8 +17,13 @@
             <div class="header">Owlet team games:</div>
             <div class="games">
             <% for(i = result.games.length-1;i>=0;i--){%>
-                <a href="<%-result.games[i].link%>"><div class="item">
+               <a <%if(role!="admin"){%> href="<%-result.games[i].link%>"<%}else%>>
+                   <div class="item">
                     <img src="../image/<%-result.games[i].img%> "alt="">
+                    <%if(role=="admin"){%>
+                        <div class="btn dellGame" data-id="<%-result.games[i]._id%>">Delete</div>
+                        <div class="btn editGame" data-id="<%-result.games[i]._id%>">Edit</div>
+                    <%}%>
                     <div class="description">
                         <p><%-result.games[i].descr%></p>
                     </div>
@@ -31,10 +37,10 @@
         <section class="info">
             <div class="wraper">
                 <div class="news">
-                    <%for(i=0;i<result.news.length;i++){%>
+                    <%for(i in result.news){%>
                         <%if(i<3){%>
                             <a href="/news/<%=result.news[i]._id%>" class="item">
-                                    <div class="img"></div>
+                                    <div class="img"><img src="image/<%=result.news[i].img%>" alt=""></div>
                                 <div class="content">
                                     <div class="header"><%=result.news[i].title%></div>
                                     <div class="date"><%=result.news[i].date%></div>

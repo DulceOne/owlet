@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('#hui').remove();
    $(".hide").css({
        width:$("html").width(),
        height:$("html").height()
@@ -40,6 +41,16 @@ $(document).ready(function(){
         $("#newsFile").click();
     })
 
+    
+
+    $('.editGame').click(function(){
+        $(".hide").css({"display":"block"});
+        $("#game").css({"display":"block"});
+        $("#new").css({"display":"none"});
+        $("#gameAdd").css({"display":"none"});
+        getGame(this);
+    });
+
     $('.edit').click(function(){
         $(".hide").css({"display":"block"});
         $("#game").css({"display":"none"});
@@ -75,24 +86,24 @@ $(document).ready(function(){
     });
 
     $('#newsAdd').click(function(){
-        var newsContent = $('#newsContent').val();
-        var newsLowContent = $('#newsLowContent').val();
         var file = $('#newsFile')[0].files[0];
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = function(){
             $.ajax({
                 url:'/newsAdd',
-                type:'POST"',
+                type:'POST',
                 data:{
-                    newsContent:newsContent,
-                    newsLowContent:newsLowContent,
+                    newsContent: $('#newsContent').val(),
+                    newsLowContent: $('#newsLowContent').val(),
+                    newsTitle: $('#newsTitle').val(),
                     newsImgName:file.name,
+                    date:formatDate(),
                     data:reader.result
                 }
             }).done(function(res){
                 if(res)
-                    console.log(res);
+                location.reload();
             }).fail(function(err){
                 console.log(err);
             });
@@ -111,6 +122,24 @@ $(document).ready(function(){
             if(res){
                 $('.editor').val(res.result.news);
                 $('#newsLowContent').val(res.result.lowContent);
+            }
+        }).fail(function(err){
+            console.log(err);
+        });
+    }
+
+    function getGame(arg){
+        var id = $(arg).attr('data-id');
+        $('#gameUpdate').attr('data-id',id);
+        $.ajax({
+            url:'/getOneGame',
+            type:'POST',
+            data:{id:id}
+        }).done(function(res){
+            var editor = $('#gameDescr').val();
+            if(res){
+                $('#gameDescr').val(res.descr);
+                $('#linkStore').val(res.link);
             }
         }).fail(function(err){
             console.log(err);
@@ -145,6 +174,32 @@ $(document).ready(function(){
         }
     })
 
+    $('#gameUpdate').click(function(){
+        var id = $(this).attr('data-id');
+        console.log(id)
+        var file = $('#gameFile')[0].files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function(){
+            $.ajax({
+                url:'/gameUpdate',
+                type:'POST',
+                data:{
+                    id:id,
+                    descr:$('#gameDescr').val(),
+                    link:$('#linkStore').val(),
+                    gamesImgName:file.name,
+                    data:reader.result
+                }
+            }).done(function(res){
+                if(res)
+                    location.reload();
+            }).fail(function(err){
+                console.log(err);
+            });
+        }
+    })
+
     $('.page').click(function(){
         var page = $(this).attr('data-id');
         console.log(page);
@@ -152,9 +207,12 @@ $(document).ready(function(){
 
     if(location.pathname == "/login"){
         $('#log').click(sendLogin);
-        if(keypress == 13){
-            sendLogin();
-        }
+
+        $("#password").keyup(function(event){
+            if(event.keyCode == 13){
+                sendLogin();
+            }
+        });
     }
     $(".btn.del").click(function(){
         var id = $(this).attr('data-id');
@@ -167,6 +225,20 @@ $(document).ready(function(){
                 document.location='/news';
         }).fail(function(err){
             alert("Server error");
+        })
+    })
+
+    $('.btn.dellGame').click(function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url:'/gameDell',
+            type:'POST',
+            data:{
+                id:id
+            }
+        }).done(function(res){
+            if(res)
+                location.reload();
         })
     })
 
@@ -201,4 +273,19 @@ $(document).ready(function(){
             alert('Server erorr');
         })
     })
+
+    function formatDate() {
+        var date = new Date();
+        var dd = date.getDate();
+        if (dd < 10) dd = '0' + dd;
+      
+        var mm = date.getMonth() + 1;
+        if (mm < 10) mm = '0' + mm;
+      
+        var yy = date.getFullYear() % 100;
+        yy = '20' + yy;
+        return  time = dd + '.' + mm + '.' + yy;
+      }
 });
+
+
