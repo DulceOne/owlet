@@ -32,7 +32,10 @@ header{
         margin: auto;
         padding-top:10px;
         padding-bottom: 10px;
-
+        @media (min-height: 680px), screen and (orientation: portrait){
+            flex-direction: column;
+            align-items: center;
+        }
         .logo{
             width:125px;
             height: 150px;
@@ -42,6 +45,11 @@ header{
             flex-direction: column;
             align-items: center;
             margin: auto;
+            @media (min-height: 680px), screen and (orientation: portrait){
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
             .logo2{
                 width:200px;
                 height: 55px;
@@ -49,11 +57,32 @@ header{
             .line{
                 border-bottom:1px solid black;
                 height: 1px;
-                width:365px;
+                max-width:365px;
+                width: 100%;
                 margin-top:20px;
+                @media (min-height: 680px), screen and (orientation: portrait){
+                    display:none;
+                }
             }
             .menu{
-                margin-top:20px;
+                .bayan{
+                    display:none;
+                    @media (min-height: 680px), screen and (orientation: portrait){
+                        display: flex;
+                        flex-direction: column;
+                        margin: auto;
+                        align-items: center;
+                        max-width: 120px;
+                        background: #2c4047;
+                        padding: 5px 15px 15px 15px;
+                     }
+                    .lines{
+                        width: 100%;
+                        padding: 10px;
+                        background: #d0cace;
+                        margin-top: 10px;
+                    }
+                }
                 a{
                     text-decoration: none;
                     color:rgba(0,0,0,0.6);
@@ -61,9 +90,20 @@ header{
                     margin-left: 10px;
                     border-bottom:1px solid transparent;
                     transition:all 1s;
+                    @media (min-height: 680px), screen and (orientation: portrait){
+                       display: flex;
+                       justify-content: center;
+                       width: 100%;
+                       display: none;
+                    }
                     &:hover{
                         border-bottom:1px solid black;
                     }
+                }
+                .show{
+                    display: block;
+                    margin-left: 0px;
+                    text-align: center;
                 }
             }
         }
@@ -72,6 +112,10 @@ header{
             right: 40px;
             padding-top: 5px;
             padding-bottom: 5px;
+            @media (min-height: 680px), screen and (orientation: portrait){
+                top:10px;
+                right:10px;
+            }
         }
     }
 }
@@ -82,7 +126,7 @@ header{
 main{
     border-top: 2px solid black;
     .container{
-        width: 68em;
+        max-width: 68em;
         margin: auto;
         padding:10px;
         padding-top: 25px;
@@ -96,6 +140,11 @@ main{
             display:flex;
             flex-direction: row;
             flex-wrap: wrap;
+            @media (min-height: 680px), screen and (orientation: portrait){
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
             .item{
                 position:relative;
                 max-width: 350px;
@@ -168,17 +217,22 @@ main{
         .wraper{
             display: flex;
             flex-direction:row;
-            width: 68em;
+            max-width: 68em;
             margin: auto;
             padding:10px;
             box-sizing: border-box;
+            @media (min-height: 680px), screen and (orientation: portrait){
+               flex-direction: column;
+            }
             // text-align: justify;
             .news{
-                width: 35.7em;
+                max-width: 35.7em;
+                width: 100%;
                 height: 400px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                padding-right: 10px;
                 .item{
                     text-decoration: none;
                     color:black;
@@ -242,10 +296,10 @@ main{
                 }
             }
             .right{
-                width: 34em;
+                max-width: 34em;
                 display: flex;
                 flex-direction: column;
-                flex-wrap: wrap-reverse;
+                align-items: center;
                 b{
                     display: block;
                     width: 400px;
@@ -269,7 +323,7 @@ footer{
     .wraper{
         display: flex;
         flex-direction: column;
-        width: 600px;
+        max-width: 600px;
         margin: auto;
         .container{
             display:flex;
@@ -422,7 +476,7 @@ footer{
     margin: auto;
     padding-bottom: 20px;
     .item{
-        width: 900px;
+        max-width: 900px;
         margin: auto;
         display: flex;
         background:white;
@@ -431,6 +485,9 @@ footer{
         border:1px solid rgba(0,0,0,0.35);
         margin-top:20px;
         align-items: left;
+        @media (min-height: 680px), screen and (orientation: portrait){
+            align-items: center;
+        }
         .header{
             position: relative;
             .content{
@@ -458,6 +515,10 @@ footer{
         .wraper{
             display: flex;
             flex-direction: row;
+            @media (min-height: 680px), screen and (orientation: portrait){
+                flex-direction: column;
+                align-items: center;
+            }
             .content{
                 word-wrap: break-word;
                 max-width: 550px;
@@ -465,7 +526,7 @@ footer{
                 box-sizing: border-box;
             }
             img{
-                width: 350px;
+                max-width: 350px;
                 height: 200px;
                 object-fit: cover;
             }
@@ -474,6 +535,9 @@ footer{
             display: inline-block;
             text-decoration: none;
             width:200px;
+            @media (min-height: 680px), screen and (orientation: portrait){
+                margin-top:10px;
+            }
         }
     }
     .current{
@@ -497,7 +561,7 @@ footer{
     }
 }
 .tidings{
-    width: 800px;
+    max-width: 800px;
     display: flex;
     margin: auto;
     flex-direction: column;
@@ -549,7 +613,7 @@ footer{
 }
 
 .about{
-    width: 800px;
+    max-width: 800px;
     display: flex;
     margin: auto;
     flex-direction: column;

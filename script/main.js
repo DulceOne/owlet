@@ -274,6 +274,10 @@ $(document).ready(function(){
         })
     })
 
+    $('.bayan').click(function(){
+        $('.menu').find('a').toggleClass("show");
+    })
+
     function formatDate() {
         var date = new Date();
         var dd = date.getDate();
